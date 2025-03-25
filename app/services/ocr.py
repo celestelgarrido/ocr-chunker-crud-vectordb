@@ -21,7 +21,7 @@ _log = logging.getLogger(__name__)
 def extract_text():
     logging.basicConfig(level=logging.INFO)
 
-    input_doc_path = Path("./app/src/files/input/docling-paper.pdf")
+    input_doc_path = Path("./app/files/input/docling-paper.pdf")
 
     # Docling Parse with EasyOCR
     # ----------------------
@@ -47,10 +47,11 @@ def extract_text():
     _log.info(f"Document converted in {end_time:.2f} seconds.")
 
     ## Export results
-    output_dir = Path("./app/src/files/output")
+    output_dir = Path("./app/files/output")
     output_dir.mkdir(parents=True, exist_ok=True)
     doc_filename = conv_result.input.file.stem
 
     # Export Markdown format:
     with (output_dir / f"{doc_filename}.md").open("w", encoding="utf-8") as fp:
         fp.write(conv_result.document.export_to_markdown())
+
