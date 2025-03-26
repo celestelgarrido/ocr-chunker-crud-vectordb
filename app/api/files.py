@@ -6,7 +6,8 @@ files = APIRouter()
 
 @files.get("/files/upload")
 def upload_files():
-    #extract_text()
-    chunking_text()
+    extract_text()
+    chunks = chunking_text()
+    # The main idea is that version 2 will use this chunks to create embedding and save in Pinecone
 
 

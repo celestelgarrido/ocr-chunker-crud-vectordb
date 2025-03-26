@@ -1,26 +1,22 @@
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-
-from docling.document_converter import DocumentConverter
-from docling.chunking import HybridChunker
 
 def chunking_text():
 
-    DOC_SOURCE = "./app/files/output/docling-paper.md"
-    print(DOC_SOURCE)
+    with open("./app/files/output/docling-paper.md", 'r', encoding='utf-8') as file:
+        text = file.read()
 
-    doc = DocumentConverter().convert(source=DOC_SOURCE).document
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=20, separators=["\n\n"])
+    chunks = text_splitter.split_text(text)
+    
+    # Prints chunks with a line separator
+    #for chunk in chunks:
+    #    print(chunk)
+    #    print("-" * 40)
 
-    print(doc)
+    return chunks
 
-    chunker = HybridChunker()
-    chunk_iter = chunker.chunk(dl_doc=doc)
 
-    print(enumerate(chunk_iter))
-    for i, chunk in enumerate(chunk_iter):
-        print(f"=== {i} ===")
-        print(f"chunk.text:\n{repr(f'{chunk.text[:300]}…')}")
+def semantic_chunking_text():
+    print("")
 
-        enriched_text = chunker.serialize(chunk=chunk)
-        print(f"chunker.serialize(chunk):\n{repr(f'{enriched_text[:300]}…')}")
-
-        print()

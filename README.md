@@ -1,5 +1,5 @@
 # Python FastAPI Backend Example
-App to process documents and create chunks
+App to process documents and create chunks. The main idea is that version 2 will contain embedding and storage in pinecone.
 
 # Technologies
 We will use
@@ -8,7 +8,7 @@ We will use
 - Uvicorn as server to run the application on the laptop (https://www.uvicorn.org/)
 - Docling as a main library to extract text from documents (https://docling-project.github.io/docling/)
 
-# Run example# Run example
+# Run example
 1. Clone this repo
 2. Install in your laptop poetry
 ```bash
@@ -17,3 +17,8 @@ brew install poetry
 3. Install project dependencies
 ```bash
 poetry install
+```
+4. Run app
+```bash
+poetry run python -m uvicorn app.main:app --reload
+```
