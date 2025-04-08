@@ -22,3 +22,6 @@ poetry install
 ```bash
 poetry run python -m uvicorn app.main:app --reload
 ```
+
+# Explanation
+You could see results in path: app/api/files/output
